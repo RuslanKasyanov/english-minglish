@@ -9,7 +9,7 @@ var debug = require('debug')('english-minglish:server');
 var http = require('http');
 
 /**
- * Get port from environment and store in Express.
+ * Get port from environment
  */
 
 var port = normalizePort(process.env.PORT || '3000');
