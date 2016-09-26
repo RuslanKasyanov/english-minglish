@@ -1,12 +1,20 @@
-function* index() {
-    yield this.render('home', {
+function* get() {
+    this.render('index', {
         Hello: 'World',
-        title: 'JUST'
+        method: 'get'
+    })
+}
+
+function* post() {
+    this.render('index', {
+        Hello: 'World',
+        method: 'post'
     })
 }
 
 var routes = [
-    {method: 'get', name: 'index', url: '/', middleware: index}
+    {method: 'get', name: 'index', url: '/', middleware: get},
+    {method: 'post', name: 'index', url: '/', middleware: post}
 ];
 
 exports.routes = routes;

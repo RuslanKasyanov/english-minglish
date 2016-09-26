@@ -1,25 +1,39 @@
 var koa = require('koa');
-var path = require('path');
 var compose = require('koa-compose');
-
-//TODO statics must be given to the frontend(~nginx) || it is just for simple develop
-var staticDir = path.join(__dirname, '/public');
-var viewsDir = path.join(__dirname, '/views');
-
+var Pug = require('koa-pug');
+var path = require('path');
+var routes = require('./bin/handlers');
 var app = koa();
+
+/**
+ * statics must be given to the frontend(~nginx) || it is just for simple develop
+ */
+var staticDir = path.resolve(__dirname, 'public');
+
+/**
+ * locals - it is constant variable for template(html/pug) page
+ */
+var pug = new Pug({
+    viewPath: path.resolve(__dirname, 'views'),
+    debug: true,
+    locals: {
+        page_title: 'so, it is minglish',
+        repo: 'https://github.com/RuslanKasyanov/einglish-minglish',
+        team: 'minglish',
+        copyright: 'Minglish'
+    },
+    app: app
+});
 
 var middlewareStack = [
     require('koa-session')([], app),
     require('koa-logger')(),
-    require('koa-static')(staticDir),
-    require('koa-views')(viewsDir, {extension: 'jade'})
+    require('koa-static')(staticDir)
 ];
 
 require('koa-locals')(app);
 
 app.use(compose(middlewareStack));
-
-var routes = require('./handlers');
 
 app.use(function* (next) {
     this.locals.url = function (url, params) {
