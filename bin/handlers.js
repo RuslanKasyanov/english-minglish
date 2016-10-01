@@ -1,4 +1,3 @@
-//TODO must be transfer near server
 var Router = require('koa-router');
 var router = new Router();
 
@@ -24,7 +23,10 @@ function loadRoutes(obj, routes){
     });
 }
 
-//TODO this connect routers
+/**
+ * this connect routers
+ */
 loadRoutes(router, require('./../routes/home').routes);
+loadRoutes(router, require('./../routes/user').routes);
 
 module.exports = router;
