@@ -10,22 +10,6 @@ TODO: Write usage instructions
 * Commit your changes: `git commit -am 'Add some feature'`
 * Push to the branch: `git push origin my-new-feature`
 * Submit a pull request :D
-* Keep structure: 
--- app.js
--- models/
----- index.js
----- blog.js
--- mongoose/
----- index.js
--- routes/
----- index.js
----- blog/index.js
--- test/
--- public/
--- resource/
--- views/
----- index.pug
-
 ## History
 TODO: Write history
 ## Credits

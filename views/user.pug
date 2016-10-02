@@ -1,0 +1,23 @@
+extend layout/main
+
+block header
+    include partial/header
+
+block content
+    h2 Login form
+    if saved
+        div Congratulations you create USER
+            div= login
+            div= pass
+    else
+        form(method='post', action='/user')
+            fieldset
+                label(for='login') login
+                input(id='login', name='login', value=login)
+                hr
+                label(for='pass') password
+                input(id='pass', name='pass', value=pass)
+            button(type='submit')
+                span Login
+block footer
+    include partial/footer
