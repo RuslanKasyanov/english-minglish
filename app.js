@@ -3,6 +3,7 @@ var compose = require('koa-compose');
 var Pug = require('koa-pug');
 var path = require('path');
 var routes = require('./bin/handlers');
+var db = require('./mongoose');
 var app = koa();
 
 /**
@@ -28,12 +29,21 @@ var pug = new Pug({
 var middlewareStack = [
     require('koa-session')([], app),
     require('koa-logger')(),
-    require('koa-static')(staticDir)
+    require('koa-static')(staticDir),
+    require('koa-body')({formidable:{uploadDir: __dirname}})
 ];
 
 require('koa-locals')(app);
 
 app.use(compose(middlewareStack));
+
+app.use(function *(next) {
+    if (this.request.method == 'POST') {
+        // => POST body
+        this.body = JSON.stringify(this.request.body);
+    }
+    yield next;
+});
 
 app.use(function* (next) {
     this.locals.url = function (url, params) {
