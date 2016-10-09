@@ -30,7 +30,7 @@ var middlewareStack = [
     require('koa-session')([], app),
     require('koa-logger')(),
     require('koa-static')(staticDir),
-    require('koa-body')({formidable:{uploadDir: __dirname}})
+    require('koa-body')({formidable: {uploadDir: __dirname}})
 ];
 
 require('koa-locals')(app);
@@ -45,7 +45,7 @@ app.use(function *(next) {
     yield next;
 });
 
-app.use(function* (next) {
+app.use(function*(next) {
     this.locals.url = function (url, params) {
         return routes.url(url, params);
     };

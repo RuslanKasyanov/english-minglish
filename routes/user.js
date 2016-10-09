@@ -1,10 +1,10 @@
 var User = require('./../models/user');
 
-function* get(){
-    this.render('user',{});
+function* get() {
+    this.render('user', {});
 
 }
-function* post(){
+function* post() {
     var loginForm = this.request.body;
     var user = new User.userModel(loginForm);
     user.save(loginForm, function (err, user) {
@@ -12,7 +12,7 @@ function* post(){
             return next(err);
         }
     });
-    this.render('user',{
+    this.render('user', {
         login: user.login,
         pass: user.pass,
         saved: true
@@ -20,8 +20,8 @@ function* post(){
 }
 
 var routes = [
-    {method: 'get', name: 'user', url:'/user', middleware: get},
-    {method: 'post', name: 'user', url:'/user', middleware: post}
+    {method: 'get', name: 'user', url: '/user', middleware: get},
+    {method: 'post', name: 'user', url: '/user', middleware: post}
 ];
 
 exports.routes = routes;

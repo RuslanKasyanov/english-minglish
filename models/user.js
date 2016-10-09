@@ -39,8 +39,8 @@ var UserSchema = Schema({
  * @param login
  * @param cb it is callback todo i think it's temporary
  */
-UserSchema.statics.findByLogin = function(login, cb){
-    this.find({ login: new RegExp(login, 'i') }, cb);
+UserSchema.statics.findByLogin = function (login, cb) {
+    this.find({login: new RegExp(login, 'i')}, cb);
 };
 
 /**
@@ -48,8 +48,8 @@ UserSchema.statics.findByLogin = function(login, cb){
  * @param id
  * @param cb it is callback todo i think it's temporary
  */
-UserSchema.statics.findById = function(id, cb){
-    this.find({ _id: id}, cb);
+UserSchema.statics.findById = function (id, cb) {
+    this.find({_id: id}, cb);
 };
 
 /**

@@ -1,8 +1,8 @@
 var Router = require('koa-router');
 var router = new Router();
 
-function loadRoutes(obj, routes){
-    routes.forEach(function(val){
+function loadRoutes(obj, routes) {
+    routes.forEach(function (val) {
         var method = val.method.toLowerCase();
         var func;
         switch (method) {
