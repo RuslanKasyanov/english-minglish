@@ -10,7 +10,7 @@ gulp.task('less', function () {
         .pipe(gulp.dest('./public/css'));
 });
 gulp.task('pug', function () {
-    return gulp.src('./views/**/*.pug')
+    return gulp.src('./front/views/**/*.pug')
         .pipe(pug())
         .pipe(gulp.dest('./public/views'));
 });

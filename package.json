@@ -22,9 +22,11 @@
     "koa-router": "5.4.0",
     "koa-session": "3.3.1",
     "koa-static": "2.0.0",
+    "less": "^2.7.1",
     "less-middleware": "2.2.0",
     "mongoose": "4.6.2",
     "normalize.css": "^4.2.0",
+    "nconf": "latest",
     "properties-reader": "0.0.15"
   },
   "devDependencies": {

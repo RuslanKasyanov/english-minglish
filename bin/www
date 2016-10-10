@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+var config = require('./../libs/config');
 var app = require('../app');
 var debug = require('debug')('english-minglish:server');
 
@@ -11,15 +11,19 @@ var debug = require('debug')('english-minglish:server');
  * Get port from environment
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(config.get('port'));
+
+/**
+ * Bind handlers
+ */
+
+app.on('error', onError);
+app.on('listening', onListening);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 app.listen(port);
-app.on('error', onError);
-app.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
