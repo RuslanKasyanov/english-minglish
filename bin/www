@@ -1,44 +1,24 @@
 #!/usr/bin/env node
+const config = require('./../libs/config'),
+    app = require('../app'),
+    debug = require('debug')('english-minglish:server');
+
+let port = normalizePort(config.get('port'));
 
 /**
- * Module dependencies.
+ * Bind handlers
  */
 
-var app = require('../app');
-var debug = require('debug')('english-minglish:server');
-
-/**
- * Get port from environment
- */
-
-var port = normalizePort(process.env.PORT || '3000');
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-app.listen(port);
 app.on('error', onError);
 app.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
+app.listen(port);
 
 function normalizePort(val) {
-    var port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
-    if (port >= 0) {
-        // port number
+    let port = parseInt(val, 10);
+    if (!isNaN(port) && port >= 0) {
         return port;
     }
-
-    return false;
+    throw  new SyntaxError("Bad config port");
 }
 
 /**
@@ -46,14 +26,11 @@ function normalizePort(val) {
  */
 
 function onError(error) {
+    let bind;
     if (error.syscall !== 'listen') {
         throw error;
     }
-
-    var bind = typeof port === 'string'
-        ? 'Pipe ' + port
-        : 'Port ' + port;
-
+    bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
@@ -74,9 +51,7 @@ function onError(error) {
  */
 
 function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
+    let address = server.address(),
+        bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + address.port;
     debug('Listening on ' + bind);
 }
