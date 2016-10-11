@@ -49,7 +49,7 @@ app.use(function*(next) {
     this.locals.url = function (url, params) {
         return routes.url(url, params);
     };
-    yield next
+    yield next;
 });
 
 app.use(routes.middleware());
