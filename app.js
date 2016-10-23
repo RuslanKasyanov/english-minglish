@@ -70,7 +70,7 @@ app.use(function *(next) {
 });
 
 /**
- * Intercept 404 errors TODO
+ * Intercept 404 errors
  */
 app.use(function *pageNotFound(next){
     yield next;

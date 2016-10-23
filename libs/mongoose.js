@@ -10,8 +10,6 @@ mongoose.connect(config.get('mongoose:uri'));
 var db = mongoose.connect;
 var models = {};
 
-//todo handel error db!
-
 /**
  * init all models into array
  *
