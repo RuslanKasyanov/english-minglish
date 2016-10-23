@@ -10,8 +10,8 @@ let port = normalizePort(config.get('port'));
  */
 
 app.on('error', onError);
-app.on('listening', onListening);
 app.listen(port);
+console.log('Listening on ' + port);
 
 function normalizePort(val) {
     let port = parseInt(val, 10);
@@ -44,14 +44,4 @@ function onError(error) {
         default:
             throw error;
     }
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-    let address = server.address(),
-        bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + address.port;
-    debug('Listening on ' + bind);
 }
